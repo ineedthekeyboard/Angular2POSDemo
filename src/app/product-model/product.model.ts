@@ -1,5 +1,5 @@
 export class Product {
     id: number;
-    name: number;
+    name: string;
     units: string; 
 }
