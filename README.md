@@ -1,5 +1,11 @@
-# AngSimpleRegister
+# Angular 2 POS Demonstration
+The goal of this project was to build a full featured working POS with angular 2 and angular 2 bootstrap. 
+In the pursuit of this mock website the best angular 2 practices were used to demonstrate the power, orgainization and maintainability
+that anuglar 2 brings to front end software engineering.
 
+****
+# Using Angular CLI to get started
+## Settting up this project
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.19-3.
 
 ## Development server

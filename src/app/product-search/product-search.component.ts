@@ -18,6 +18,9 @@ export class ProductSearchComponent implements OnInit {
   ngOnInit() {
   }
 
+  addProduct(product: Product) {
+
+  }
   search(term: string): void {
     let searchForTerm = () => {
       //clearly this code is really bad for production, devise a service to handle search later.
