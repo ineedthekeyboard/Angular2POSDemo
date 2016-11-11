@@ -1,8 +1,8 @@
 <div class="searchContainer">
-  <input #searchBox id="search-box" class="searchField" type="text" (keyup)="search(searchBox.value)"/><i class="material-icons md-24">search</i>
+  <input #searchBox [(ngModel)]="searchBoxValue" id="search-box" class="searchField" type="text" (keyup)="search()"/><i class="material-icons md-24">search</i>
   <div>
         <div *ngFor="let product of products"
-             class="search-result" (click)="addProduct(product)" >
+             class="search-result" (click)="addProduct(product);" >
             {{product.name}}
         </div>
     </div>

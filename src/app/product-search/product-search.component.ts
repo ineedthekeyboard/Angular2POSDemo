@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ProductsService } from '../products.service';
 import { Product } from '../product-model/product.model';
 
@@ -10,6 +10,9 @@ import { Product } from '../product-model/product.model';
 export class ProductSearchComponent implements OnInit {
   products: Product[];
   searchTerm: string;
+  searchBoxValue: string = '';
+
+  @Output() productSelected: EventEmitter<Product> = new EventEmitter<Product>();
 
   constructor(
     private productsService: ProductsService
@@ -18,10 +21,14 @@ export class ProductSearchComponent implements OnInit {
   ngOnInit() {
   }
 
-  addProduct(product: Product) {
-
+  addProduct(product: Product): void {
+    this.productSelected.emit(product);
+    this.searchBoxValue = '';
+    this.search();
   }
-  search(term: string): void {
+  
+  search(): void {
+    let term = this.searchBoxValue;
     let searchForTerm = () => {
       //clearly this code is really bad for production, devise a service to handle search later.
       this.productsService.getProducts().then((products) => this.products = products.filter(p => p.name.indexOf(this.searchTerm) > -1));

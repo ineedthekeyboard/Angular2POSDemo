@@ -15,6 +15,7 @@ import { NgbdModalContent } from './modal-component/modal.component';
 import { ProductsService } from './products.service';
 import { AppRoutingModule } from './app.router';
 import { ProductSearchComponent } from './product-search/product-search.component';
+import { OrderTableComponent } from './order-table/order-table.component';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { ProductSearchComponent } from './product-search/product-search.componen
     OrderSummaryComponent,
     OrderPageComponent,
     NgbdModalContent,
-    ProductSearchComponent
+    ProductSearchComponent,
+    OrderTableComponent
   ],
   entryComponents: [NgbdModalContent],
   providers: [ProductsService],

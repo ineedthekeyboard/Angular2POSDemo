@@ -2,19 +2,7 @@
   <div class="pagetitle">
     {{pagetitle}}
   </div>
-  <app-product-search></app-product-search>
+  <app-product-search (productSelected)='onProductSelected($event)'></app-product-search>
   <button type="button" class="btn btn-default btn-lg btn-block disabled order">Order</button>
-  <table class="table table-striped table-hover">
-    <thead>
-      <tr>
-        <td class="name">Name</td>
-        <td class="number">Number</td>
-        <td class="units">Units</td>
-        <td class="del">Delete?</td>
-      </tr>
-    </thead>
-    <tbody>
-
-    </tbody>
-  </table>
+  <app-order-table [products]='productsOrdered' (deleteProduct)='deleteSelectProduct($event)'></app-order-table>
 </div>
