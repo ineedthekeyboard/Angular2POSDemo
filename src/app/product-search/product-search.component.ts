@@ -9,6 +9,7 @@ import { Product } from '../product-model/product.model';
 })
 export class ProductSearchComponent implements OnInit {
   products: Product[];
+  allProducts: Product[];
   searchTerm: string;
   searchBoxValue: string = '';
 
@@ -19,6 +20,8 @@ export class ProductSearchComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    //Moved to the service to on init::
+    this.productsService.getProducts().then((products) => {this.allProducts = products});
   }
 
   addProduct(product: Product): void {
@@ -26,12 +29,18 @@ export class ProductSearchComponent implements OnInit {
     this.searchBoxValue = '';
     this.search();
   }
+  enterPressedAddProduct(): void {
+    let productsFilteredByName: Product[] = this.allProducts.filter(p => p.name.indexOf(this.searchTerm) > -1);
+    if (productsFilteredByName.length > 0) {
+      this.productSelected.emit(productsFilteredByName[0]);
+    }
+  }
   
   search(): void {
     let term = this.searchBoxValue;
     let searchForTerm = () => {
-      //clearly this code is really bad for production, devise a service to handle search later.
-      this.productsService.getProducts().then((products) => this.products = products.filter(p => p.name.indexOf(this.searchTerm) > -1));
+      //clearly this code is really bad for production, devise a service to handle search later
+      this.products = this.allProducts.filter(p => p.name.indexOf(this.searchTerm) > -1);
     }
     this.searchTerm = term;
     if (this.searchTerm === '' || !this.searchTerm) {
