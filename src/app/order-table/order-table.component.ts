@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, SimpleChange} from '@angular/core';
 import {Product} from '../product-model/product.model';
 
 @Component({
@@ -9,11 +9,27 @@ import {Product} from '../product-model/product.model';
 export class OrderTableComponent implements OnInit {
   @Input() products:Product[];
   @Output() deleteProduct: EventEmitter<Product> = new EventEmitter<Product>();
-  
+  @Input() summaryMode: Boolean;
+
+  summary: any = {
+    totalCount: 0,
+    totalCost: 0
+  };
+
   constructor() {}
   ngOnInit() {}
 
-  delete(product: Product) {
+  ngOnChanges(changes){
+    if (changes.products && changes.products.currentValue && changes.products.currentValue.length > 0) {
+      for(let product of this.products){
+        this.summary.totalCost += (product.price * product.number);
+        this.summary.totalCount += product.number;
+      }
+    }
+
+  }
+
+  productDeletePressed(product: Product) {
     this.deleteProduct.emit(product);
   }
 

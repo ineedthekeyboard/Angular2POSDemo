@@ -7,6 +7,7 @@ import { Product } from "./product-model/product.model";
 export class ProductsService {
 
   private productUrl = 'app/products';
+  private orderProductsUrl = 'app/productsOrdered';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   constructor(
     private http: Http
@@ -39,6 +40,19 @@ export class ProductsService {
     return this.http.delete(url, { headers: this.headers })
       .toPromise()
       .then(() => null)
+      .catch(this.handleError);
+  }
+  createProductsToOrder(products: Product[]): Promise<Product[]> {
+    return this.http
+      .post(this.orderProductsUrl, JSON.stringify(products), { headers: this.headers })
+      .toPromise()
+      .then(res => res.json().data)
+      .catch(this.handleError);
+  }
+  getProductsToOrder(): Promise<Product[]> {
+    return this.http.get(this.orderProductsUrl)
+      .toPromise()
+      .then(response => response.json().data[0] as Product[])
       .catch(this.handleError);
   }
   private handleError(error: any): Promise<any> {

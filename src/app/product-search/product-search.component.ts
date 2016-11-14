@@ -35,13 +35,13 @@ export class ProductSearchComponent implements OnInit {
       this.productSelected.emit(productsFilteredByName[0]);
     }
   }
-  
+
   search(): void {
     let term = this.searchBoxValue;
     let searchForTerm = () => {
       //clearly this code is really bad for production, devise a service to handle search later
       this.products = this.allProducts.filter(p => p.name.indexOf(this.searchTerm) > -1);
-    }
+    };
     this.searchTerm = term;
     if (this.searchTerm === '' || !this.searchTerm) {
       this.products = [];
@@ -51,14 +51,14 @@ export class ProductSearchComponent implements OnInit {
   }
 
   debounce(func, wait, immediate) {
-    var timeout;
+    let timeout;
     return function () {
-      var context = this, args = arguments;
-      var later = function () {
+      let context = this, args = arguments;
+      let later = function () {
         timeout = null;
         if (!immediate) func.apply(context, args);
       };
-      var callNow = immediate && !timeout;
+      let callNow = immediate && !timeout;
       clearTimeout(timeout);
       timeout = setTimeout(later, wait);
       if (callNow) func.apply(context, args);

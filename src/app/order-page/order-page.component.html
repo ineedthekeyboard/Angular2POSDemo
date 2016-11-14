@@ -3,6 +3,6 @@
     {{pagetitle}}
   </div>
   <app-product-search (productSelected)='onProductSelected($event)'></app-product-search>
-  <button type="button" class="btn btn-default btn-lg btn-block disabled order">Order</button>
-  <app-order-table [products]='productsOrdered' (deleteProduct)='deleteSelectProduct($event)'></app-order-table>
+  <button type="button" (click)="onOrder()" class="btn btn-default btn-lg btn-block order" [disabled]="!this.productsOrdered.length > 0">Order</button>
+  <app-order-table [summaryMode]=false [products]='productsOrdered' (deleteProduct)='deleteSelectProduct($event)'></app-order-table>
 </div>

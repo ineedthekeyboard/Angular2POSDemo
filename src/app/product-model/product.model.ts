@@ -2,5 +2,6 @@ export class Product {
     id: number;
     name: string;
     price: number;
-    units: string; 
+    number: number;
+    units: string;
 }

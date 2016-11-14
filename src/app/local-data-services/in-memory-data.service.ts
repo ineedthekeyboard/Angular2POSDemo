@@ -27,6 +27,7 @@ export class InMemoryDataService implements InMemoryDbService {
                 units: 'kg'
             }
         ];
-        return { products };
+        let productsOrdered = [];
+        return { products, productsOrdered };
     }
 }
