@@ -1,7 +1,7 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { OrderPageComponent } from './order-page/order-page.component';
-import { OrderSummaryComponent } from './order-summary/order-summary.component';
+import { OrderPageComponent } from './views/order-page/order-page.component';
+import { OrderSummaryComponent } from './views/order-summary/order-summary.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/order', pathMatch: 'full' },

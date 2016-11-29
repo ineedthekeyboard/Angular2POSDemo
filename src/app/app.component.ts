@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import {OnInit} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {NgbdModalContent} from './modal-component/modal.component';
+import {AppModalContentComponent} from './views/modal-component/modal.component';
 
 @Component({
    selector: 'app-root',
@@ -11,13 +10,11 @@ import {NgbdModalContent} from './modal-component/modal.component';
 })
 export class AppComponent {
   title = 'Super Spice Traders';
-  constructor ( 
+  constructor (
       private modalService: NgbModal
   ) {}
-  ngOnInit(): void {
-  }
   openModal(): void {
-      const modalRef = this.modalService.open(NgbdModalContent);
+      const modalRef = this.modalService.open(AppModalContentComponent);
       modalRef.componentInstance.name = 'World';
   }
 }

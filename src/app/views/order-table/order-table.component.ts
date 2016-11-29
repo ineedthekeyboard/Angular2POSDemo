@@ -1,13 +1,13 @@
-import {Component, OnInit, Input, Output, EventEmitter, SimpleChange} from '@angular/core';
-import {Product} from '../product-model/product.model';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {Product} from '../../models/product-model/product.model';
 
 @Component({
   selector: 'app-order-table',
-  templateUrl: './order-table.component.html',
-  styleUrls: ['./order-table.component.css']
+  templateUrl: 'order-table.component.html',
+  styleUrls: ['order-table.component.css']
 })
 export class OrderTableComponent implements OnInit {
-  @Input() products:Product[];
+  @Input() products: Product[];
   @Output() deleteProduct: EventEmitter<Product> = new EventEmitter<Product>();
   @Input() summaryMode: Boolean;
 
@@ -16,12 +16,15 @@ export class OrderTableComponent implements OnInit {
     totalCost: 0
   };
 
-  constructor() {}
-  ngOnInit() {}
+  constructor() {
+  }
 
-  ngOnChanges(changes){
+  ngOnInit() {
+  }
+
+  ngOnChanges(changes) {
     if (changes.products && changes.products.currentValue && changes.products.currentValue.length > 0) {
-      for(let product of this.products){
+      for (let product of this.products) {
         this.summary.totalCost += (product.price * product.number);
         this.summary.totalCount += product.number;
       }

@@ -9,13 +9,14 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './local-data-services/in-memory-data.service';
 
 import { AppComponent } from './app.component';
-import { OrderPageComponent } from './order-page/order-page.component';
-import { OrderSummaryComponent } from './order-summary/order-summary.component';
-import { NgbdModalContent } from './modal-component/modal.component';
-import { ProductsService } from './products.service';
+import { OrderPageComponent } from './views/order-page/order-page.component';
+import { OrderSummaryComponent } from './views/order-summary/order-summary.component';
+import { AppModalContentComponent } from './views/modal-component/modal.component';
+import { ProductsService } from './services/products.service';
+import { OrdersService } from './services/orders.service';
 import { AppRoutingModule } from './app.router';
-import { ProductSearchComponent } from './product-search/product-search.component';
-import { OrderTableComponent } from './order-table/order-table.component';
+import { ProductSearchComponent } from './views/product-search/product-search.component';
+import { OrderTableComponent } from './views/order-table/order-table.component';
 
 @NgModule({
   imports: [
@@ -30,12 +31,12 @@ import { OrderTableComponent } from './order-table/order-table.component';
     AppComponent,
     OrderSummaryComponent,
     OrderPageComponent,
-    NgbdModalContent,
+    AppModalContentComponent,
     ProductSearchComponent,
     OrderTableComponent
   ],
-  entryComponents: [NgbdModalContent],
-  providers: [ProductsService],
+  entryComponents: [AppModalContentComponent],
+  providers: [ProductsService, OrdersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
